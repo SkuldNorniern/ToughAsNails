@@ -10,8 +10,10 @@ dependencies {
     compileOnly project(":Common")
     implementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
     implementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
-    implementation "com.github.glitchfiend:GlitchCore-fabric:${minecraft_version}-${glitchcore_version}"
-    implementation "com.github.glitchfiend:SereneSeasons-fabric:${minecraft_version}-${serene_seasons_version}"
+    // JitPack (com.github.glitchfiend) is 401ing on this network; using jars pulled directly
+    // from Modrinth's CDN until that's sorted out. See libs/README.md.
+    implementation files("${rootDir}/libs/GlitchCore-fabric-${glitchcore_version}.jar")
+    implementation files("${rootDir}/libs/SereneSeasons-fabric-${serene_seasons_version}.jar")
     implementation group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.2'
 
     // Dependencies embedded in final jar

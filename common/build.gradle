@@ -19,6 +19,9 @@ dependencies {
     compileOnly("com.electronwill.night-config:toml:${nightconfig_version}")
     compileOnly("com.electronwill.night-config:core:${nightconfig_version}")
     compileOnly("net.jodah:typetools:0.6.3")
-    compileOnly 'com.github.glitchfiend:GlitchCore-common:' + minecraft_version + '-' + glitchcore_version
-    compileOnly 'com.github.glitchfiend:SereneSeasons-common:' + minecraft_version + '-' + serene_seasons_version
+    // No standalone "common" jar is published anywhere (JitPack, which builds one on demand,
+    // is 401ing on this network); the loader jars bundle the same common-package classes
+    // compiled in, so the fabric jar works as a compile-time stand-in. See libs/README.md.
+    compileOnly files("${rootDir}/libs/GlitchCore-fabric-${glitchcore_version}.jar")
+    compileOnly files("${rootDir}/libs/SereneSeasons-fabric-${serene_seasons_version}.jar")
 }

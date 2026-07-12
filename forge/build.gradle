@@ -25,7 +25,6 @@ repositories {
     minecraft.mavenizer(it)
     maven fg.forgeMaven
     maven fg.minecraftLibsMaven
-    maven { url = 'https://jitpack.io' }
 }
 
 dependencies {
@@ -33,8 +32,10 @@ dependencies {
     annotationProcessor 'net.minecraftforge:eventbus-validator:7.0.1'
     annotationProcessor 'org.spongepowered:mixin:0.8.7:processor'
     compileOnly project(":Common")
-    implementation "com.github.glitchfiend:GlitchCore-forge:${minecraft_version}-${glitchcore_version}"
-    implementation "com.github.glitchfiend:SereneSeasons-forge:${minecraft_version}-${serene_seasons_version}"
+    // JitPack (com.github.glitchfiend) is 401ing on this network; using jars pulled directly
+    // from Modrinth's CDN until that's sorted out. See libs/README.md.
+    implementation files("${rootDir}/libs/GlitchCore-forge-${glitchcore_version}.jar")
+    implementation files("${rootDir}/libs/SereneSeasons-forge-${serene_seasons_version}.jar")
 }
 
 tasks.withType(JavaCompile).configureEach {
